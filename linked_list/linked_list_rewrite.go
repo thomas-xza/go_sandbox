@@ -29,11 +29,13 @@ func main() {
 
 		start_pt, _ = insert_element(start_pt, start_pt, empty_pt, i * 5)
 
-		fmt.Println(linked_list_1)
-	
-	}
+		for j := 0 ; j < 6 ; j++ { fmt.Printf("%p %d -> %p\n", &linked_list_1[j], linked_list_1[j].v, linked_list_1[j].next) }
 
-	for j := 0 ; j < 6 ; j++ { fmt.Printf("%p %d\n", &linked_list_1[j], linked_list_1[j].v) }
+		fmt.Println("\n")
+
+// 		fmt.Println(linked_list_1)
+		
+	}
 
 	// target_pt, _ := find_nth_element(start_pt, 0)
 
@@ -55,11 +57,20 @@ func insert_element(element_pt *Linked_list_elem, start_pt *Linked_list_elem, em
 
 	} else {
 
-		empty_pt.v = n
+		//  Copy filled element to empty element
+		//         []     [2] <- [1]
+		//         [1] -> [2] <- [1]
+
+		empty_pt.v = element_pt.v
+
+		empty_pt.next = element_pt.next
 
 		empty_pt.linked = true
 
-		empty_pt.next = element_pt.next
+		//  Insert new element and point it to copied element.
+		//  [3] -> [1] -> [2]
+
+		element_pt.v = n
 
 		element_pt.next = empty_pt
 		
