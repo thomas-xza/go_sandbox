@@ -118,20 +118,3 @@ func find_nth_element(start_pos *Linked_list_elem, n int) (*Linked_list_elem, er
 
 }
 
-// func initialise_mem(linked_list []Linked_list_elem, size int) {
-
-// 	for i := range linked_list {
-
-// 		if i < (size - 1) {
-
-// 			linked_list[i].next = &linked_list[i + 1]
-
-// 			linked_list[i].linked = true
-
-// 		}
-
-// 		linked_list[i].v = i
-
-// 	}
-
-// }
