@@ -1,0 +1,57 @@
+package main
+
+import (
+	"fmt"
+	// "errors"
+)
+
+type Linked_list_elem struct {
+
+	v int
+	linked bool
+	next *Linked_list_elem
+	
+}
+
+func main() {
+
+	linked_list := make([]Linked_list_elem, 6)
+
+	fmt.Println(linked_list)
+
+	initialise_list(linked_list, 6 - 2)
+
+	fmt.Println(linked_list)
+	
+}
+
+func initialise_list(linked_list []Linked_list_elem, size int) {
+
+	fmt.Println(linked_list)
+
+	// for i := 0 ; i < size ; i++ {
+
+	// 	node_current := linked_list_slc_pt[i]
+
+		// node_current = &Linked_list_elem{ v: i, linked: true }
+
+		// fmt.Println(*node_current)
+
+		// if i < (size - 1) {
+
+		// 	// source_node_pt := linked_list_slc_pt[i]
+
+		// 	// dest_node_pt := linked_list_slc_pt[i + 1]
+
+			
+
+			
+		// }
+
+		// *(linked_list_slc_pt + i).v = i
+
+		// *(linked_list_slc_pt + i).linked = true
+
+	// }
+
+}
