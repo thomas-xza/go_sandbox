@@ -17,29 +17,60 @@ func main() {
 
 	linked_list_1 := make([]Linked_list_elem, 6)
 
-	// initialise_mem(linked_list_1, 6 - 2)
+	for j := 0 ; j < 6 ; j++ { fmt.Printf("%p \n", &linked_list_1[j]) }
 
-	fmt.Println(linked_list_1)
+	start_pt := &linked_list_1[0]
 
-	empty_pt := find_unused_element(linked_list_1)
+	for i := 1 ; i < 6 ; i++ {
 
-	element_pt = find_nth_element(&linked_list_1[0], 3)
+		empty_pt, _ := find_unused_element(linked_list_1)
+
+		// fmt.Printf("next empty: %p\n", empty_pt)
+
+		start_pt, _ = insert_element(start_pt, start_pt, empty_pt, i * 5)
+
+		fmt.Println(linked_list_1)
 	
-	insert_element(element_pt, 20)
+	}
+
+	for j := 0 ; j < 6 ; j++ { fmt.Printf("%p %d\n", &linked_list_1[j], linked_list_1[j].v) }
+
+	// target_pt, _ := find_nth_element(start_pt, 0)
+
+	// _, _ = find_nth_element(&linked_list_1[0], 3)
+	
+}
+
+func insert_element(element_pt *Linked_list_elem, start_pt *Linked_list_elem, empty_pt *Linked_list_elem, n int) (*Linked_list_elem, error) {
+
+	//  Check if the list is empty.
+	
+	if ( start_pt.linked == false ) {
+
+		empty_pt.v = n
+		
+		empty_pt.linked = true
+
+		return empty_pt, nil
+
+	} else {
+
+		empty_pt.v = n
+
+		empty_pt.linked = true
+
+		empty_pt.next = element_pt.next
+
+		element_pt.next = empty_pt
+		
+		return start_pt, nil
+
+	}
 
 }
 
-func insert_element(element_source *Linked_list_elem, n int) {
 
-	//  This function is for inserting anywhere after the initial element.
-
-
-	// fmt.Printf("%p\n", element_source)
-
-}
-
-
-func find_unused_element(allocated_mem []Linked_list_elem) (int, error) {
+func find_unused_element(allocated_mem []Linked_list_elem) (*Linked_list_elem, error) {
 
 	for i := range allocated_mem {
 
@@ -55,14 +86,14 @@ func find_unused_element(allocated_mem []Linked_list_elem) (int, error) {
 
 }
 
-func find_nth_element(start_pos *Linked_list_elem, n int) *Linked_list_elem {
+func find_nth_element(start_pos *Linked_list_elem, n int) (*Linked_list_elem, error) {
 
 	//  This function follows the list, from the start position,
 	//  until it reaches the nth link in the list.
 
 	var next_element_pt *Linked_list_elem = start_pos
 
-	fmt.Printf("%p\n", next_element_pt)
+	fmt.Printf("%p %d\n", next_element_pt, next_element_pt.v)
 
 	for i := 0 ; i < n - 1; i++ {
 
@@ -72,7 +103,7 @@ func find_nth_element(start_pos *Linked_list_elem, n int) *Linked_list_elem {
 
 	}
 
-	return next_element_pt
+	return next_element_pt, nil
 
 }
 
