@@ -25,9 +25,7 @@ func merge_sort(set []int) {
 
 func divide(set []int) ([]int) {
 
-	midpoint := len(set) / 2
-
-	fmt.Println(midpoint)
+	mid := len(set) / 2
 
 	if len(set) <= 1 {
 
@@ -35,11 +33,9 @@ func divide(set []int) ([]int) {
 		
 	} else {
 
-		set_a := set[:midpoint]
+		// fmt.Println(merge(divide(set[:mid]), divide(set[mid:])))
 
-		set_b := set[midpoint:]
-
-		return merge(divide(set_a), divide(set_b))
+		return merge(divide(set[:mid]), divide(set[mid:]))
 
 	}
 
@@ -47,14 +43,32 @@ func divide(set []int) ([]int) {
 
 func merge(set_a []int, set_b []int) ([]int) {
 
-	fmt.Println(set_a, set_b)
+	set_sorted := make([]int, 0)
 
-	return append(set_a, set_b...)
+	a_pt, b_pt := 0, 0
 
-	// } else {
+	for i := 0 ; i < len(set_a) + len(set_b) ; i++ {
 
-	// 	return append(set_b, set_a...)
+		if (set_a[a_pt] > set_b[b_pt]) {
 
-	// }
+			set_sorted = append(set_sorted, set_a[a_pt])
+
+			a_pt += 1
+
+		} else {
+
+			set_sorted = append(set_sorted, set_b[b_pt])
+
+			b_pt += 1
+
+		}			
+
+		i += 1
+
+	}
+
+	fmt.Println(set_sorted)
+
+	return append(set_sorted)
 
 }
