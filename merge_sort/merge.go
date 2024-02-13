@@ -33,8 +33,6 @@ func divide(set []int) ([]int) {
 		
 	} else {
 
-		// fmt.Println(merge(divide(set[:mid]), divide(set[mid:])))
-
 		return merge(divide(set[:mid]), divide(set[mid:]))
 
 	}
@@ -42,6 +40,12 @@ func divide(set []int) ([]int) {
 }
 
 func merge(set_a []int, set_b []int) ([]int) {
+
+	fmt.Println("merge", set_a, set_b)
+	
+	if (len(set_a) == 0) { return set_b }
+
+	if (len(set_b) == 0) { return set_a }
 
 	set_sorted := make([]int, 0)
 

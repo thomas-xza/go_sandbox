@@ -13,6 +13,7 @@ type Linked_list_elem struct {
 	
 }
 
+
 func main() {
 
 	linked_list_1 := make([]Linked_list_elem, 6)
@@ -42,6 +43,7 @@ func main() {
 	// _, _ = find_nth_element(&linked_list_1[0], 3)
 	
 }
+
 
 func insert_element(element_pt *Linked_list_elem, start_pt *Linked_list_elem, empty_pt *Linked_list_elem, n int) (*Linked_list_elem, error) {
 
@@ -96,6 +98,7 @@ func find_unused_element(allocated_mem []Linked_list_elem) (*Linked_list_elem, e
 	return &allocated_mem[0], errors.New("No space found")
 
 }
+
 
 func find_nth_element(start_pos *Linked_list_elem, n int) (*Linked_list_elem, error) {
 
