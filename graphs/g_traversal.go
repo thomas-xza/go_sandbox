@@ -10,6 +10,54 @@ func main() {
 
 	graph := initialise_graph(g_size)
 
+	// bfs_traversal(graph, g_size)
+
+	dfs_traversal(graph, g_size)
+
+}
+
+func dfs_traversal(graph [][]int, g_size int) {
+
+	var stack []int
+
+	visited := make([]int, g_size)
+
+	visited[0] = 1
+
+	stack = append(stack, 0)
+
+	dfs_recurse(graph, visited, 0, stack)
+	
+}
+
+func dfs_recurse(graph [][]int, visited []int, vx int, stack []int) {
+
+	fmt.Println(stack, visited)
+
+	_, stack = stack[len(stack)-1], stack[:len(stack)-1]
+
+	// fmt.Println("error?")
+
+	// vx, stack := stack[len(stack)-1], stack[:len(stack)-1]
+
+	for vx_dest, connection := range graph[vx] {
+
+		if connection > 0 && visited[vx_dest] == 0 {
+
+			visited[vx_dest] = 1
+
+			stack = append(stack, vx_dest)
+
+			dfs_recurse(graph, visited, vx_dest, stack)
+
+		}
+			
+	}
+
+}
+
+func bfs_traversal(graph [][]int, g_size int) {
+
 	var queue, distances []int
 
 	for i := 0 ; i < g_size ; i++ {
@@ -26,10 +74,7 @@ func main() {
 	
 	for len(queue) != 0 {
 
-		// fmt.Println(queue)
 		vx, queue = queue[0], queue[1:]
-
-		fmt.Println(distances)
 
 		for vx_dest, connection := range graph[vx] {
 
@@ -41,11 +86,7 @@ func main() {
 
 			}
 
-			// fmt.Println(v)
-
 		}
-
-		fmt.Println(vx, queue)
 
 	}
 
